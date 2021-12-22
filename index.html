@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./normalize.css">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" type="text/css" href="./slick.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="./slick.min.js"></script>
+</head>
+
+<body>
+    <nav class="header">
+        <h1 class="logo"><a href="./index.html">Weather</a> </h1>
+        <ul class="navigation">
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="#">About us</a></li>
+            <li id="map"><a href="#">Map</a></li>
+            <li><a href="#">Contacts</a></li>
+        </ul>
+        <div class="search">
+            <input id="searchInput" type="search" placeholder="Поиск по городам">
+
+            <!-- <input id="searchButton" type="submit" value="Искать" onclick="click();"> -->
+        </div>
+    </nav>
+
+    <section class="wrapper">
+
+        <div class="content_box">
+            <div class="weather_days">
+                <span id="today">Today</span>
+                <span id="five_days">5-day forecast</span>
+            </div>
+            <div class="weather_wrapper">
+                <div class="weather_card">
+
+                    <div class="weather_card_top">
+                        <div class="town"></div>
+                        <span id="current_data"></span>
+                    </div>
+                    <div class="weather_card_bottom">
+                        <div id="icon_status"></div>
+                        <div id="temp_status"></div>
+                        <div id="description"></div>
+                    </div>
+                    <div class="content_box_hourly">
+                        <div class="time_hourly">
+                            <div class="hourly_top">Hourly</div>
+                            <div style="z-index: 2">
+                                <h3>Today:</h3>
+                            </div>
+
+                            <div class="time_hourly_now">
+
+                            </div>
+                            <!-- <div class="center"></div> -->
+                        </div>
+                    </div>
+                    <div class="hourly_top">Nearly Places</div>
+                    <div class="nearby_places">
+                        <div class="first_town"></div>
+                        <div class="second_town"></div>
+                        <div class="third_town"></div>
+                        <div class="fourth_town"></div>
+                    </div>
+                </div>
+
+                <div class="content_box_five_days">
+                    <div>
+                        <div class="tab tab_five_day">
+                            <button class="weekday active" onclick="openCity(event, 'day1')" active></button>
+                            <div class="middle"></div>
+                            <button class="weekday" onclick="openCity(event, 'day2')"></button>
+                            <div class="middle"></div>
+                            <button class="weekday" onclick="openCity(event, 'day3')"></button>
+                            <div class="middle"></div>
+                            <button class="weekday" onclick="openCity(event, 'day4')"></button>
+                            <div class="middle"></div>
+                            <button class="weekday" onclick="openCity(event, 'day5')"></button>
+                        </div>
+                        <div class="five_day_boxes_div">
+                            <div id='day1' class="five_day_boxes">
+                            </div>
+
+                            <div id='day2' class="five_day_boxes">
+
+                            </div>
+
+                            <div id='day3' class="five_day_boxes">
+
+                            </div>
+                            <div id='day4' class="five_day_boxes">
+
+                            </div>
+
+                            <div id='day5' class="five_day_boxes">
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="maps"></div>
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+    <script src="./script.js">
+    </script>
+
+</body>
+
+</html>
