@@ -33,6 +33,7 @@ let getDay = (date) => {
   let day = new Date(date * 1000);
   return day;
 };
+
 // запрос при клике на поиск
 
 searchValue.addEventListener("keydown", function (e) {
