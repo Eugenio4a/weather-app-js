@@ -21,6 +21,7 @@ const thirdTown = document.querySelector(".third_town");
 const fourthTown = document.querySelector(".fourth_town");
 const dayNight = document.querySelector(".wrapper");
 const fiveDayBoxes = document.querySelectorAll(".five_day_boxes");
+const searchBtnHeader = document.querySelector("#searchBtnHeader");
 
 let options = {
   weekday: "long",
@@ -35,23 +36,22 @@ let getDay = (date) => {
 };
 // запрос при клике на поиск
 
-searchValue.addEventListener("keydown", function (e) {
-  if (e.keyCode === 13) {
-    timeHourlyNow.innerHTML = ``;
+searchBtnHeader.addEventListener("click", function () {
+  timeHourlyNow.innerHTML = ``;
 
-    let api = `https://api.openweathermap.org/data/2.5/forecast?q=${searchValue.value}&lang=ru&appid=34f43a858bf23ccc0aa2963cbf729cda`;
-    fetch(api)
-      .then((request) => request.json())
-      .then((json) =>
-        json.list.slice(0, 5).forEach((element) => {
-          //вывод названия города
-          town.innerHTML = `
+  let api = `https://api.openweathermap.org/data/2.5/forecast?q=${searchValue.value}&lang=ru&appid=34f43a858bf23ccc0aa2963cbf729cda`;
+  fetch(api)
+    .then((request) => request.json())
+    .then((json) =>
+      json.list.slice(0, 5).forEach((element) => {
+        //вывод названия города
+        town.innerHTML = `
                     <p>${json.city.name}</p>
                     `;
-          //вывод времени
-          currentData.innerHTML = "<p>Сейчас</p>";
-          // вывод температуры
-          tempStatus.innerHTML = `
+        //вывод времени
+        currentData.innerHTML = "<p>Сейчас</p>";
+        // вывод температуры
+        tempStatus.innerHTML = `
                     <div class="feels_like">
                     <span class="temp">
                     ${Math.round(element.main.temp - 273) + "&deg" + "C"}
@@ -65,21 +65,21 @@ searchValue.addEventListener("keydown", function (e) {
                     </span>
                     </div>
                     `;
-          // вывод иконки погоды
-          iconStatus.innerHTML = `
+        // вывод иконки погоды
+        iconStatus.innerHTML = `
                     <img src="https://openweathermap.org/img/wn/${element.weather[0]["icon"]}@2x.png">
                     <span>${element.weather[0]["main"]}</span>
                     
                     `;
-          // добавить 0 , перевести вермя из миллисекунд
-          Number.prototype.pad = function (size) {
-            let time = String(this);
-            if (time.length < (size || 2)) {
-              time = "0" + time;
-            }
-            return time;
-          };
-          description.innerHTML = `
+        // добавить 0 , перевести вермя из миллисекунд
+        Number.prototype.pad = function (size) {
+          let time = String(this);
+          if (time.length < (size || 2)) {
+            time = "0" + time;
+          }
+          return time;
+        };
+        description.innerHTML = `
                     <span>Sunrise: ${sunrise(
                       json.city.sunrise,
                       json.city.timezone
@@ -96,16 +96,16 @@ searchValue.addEventListener("keydown", function (e) {
                     )}</span>
                     
                     `;
-          //вывод дня недели
-          let weekDay = () => {
-            let day = "";
-            day = new Date(element.dt * 1000 - 50000);
-            day.getHours() + ":" + "00";
-            day = day.toString().slice(0, 3);
-            return day;
-          };
-          //вывод списка погоды по часам
-          timeHourlyNow.innerHTML += `
+        //вывод дня недели
+        let weekDay = () => {
+          let day = "";
+          day = new Date(element.dt * 1000 - 50000);
+          day.getHours() + ":" + "00";
+          day = day.toString().slice(0, 3);
+          return day;
+        };
+        //вывод списка погоды по часам
+        timeHourlyNow.innerHTML += `
                     <div class="day_box_weather ${element.sys.pod}">
                     <span>${element.dt_txt.slice(10, 16)}</span>
                     <span>${weekDay()}</span>
@@ -124,28 +124,27 @@ searchValue.addEventListener("keydown", function (e) {
                     }</span>
                     </div>
                     `;
-          // console.log(element.sys.pod == "d");
-          weatherCard.style.display = "flex";
-          document.querySelector(".weather_wrapper").style.display = "flex";
-          // Cмена дня и ноги БГ и карточки
-          let dayBox = document.querySelector(`.${element.sys.pod}`);
-          if (dayBox.classList == "n") {
-            dayBox.classList.remove("day_box_weather");
-            dayBox.classList.add("night_box_weather");
-          } else if (dayBox.classList == "d") {
-            dayBox.classList.remove("night_box_weather");
-            dayBox.classList.add("day_box_weather");
-          }
-        })
-      )
-      .then(() => {
-        $(".multiple-items").slick({
-          infinite: true,
-          slidesToShow: 3,
-          slidesToScroll: 3,
-        });
+        // console.log(element.sys.pod == "d");
+        weatherCard.style.display = "flex";
+        document.querySelector(".weather_wrapper").style.display = "flex";
+        // Cмена дня и ноги БГ и карточки
+        let dayBox = document.querySelector(`.${element.sys.pod}`);
+        if (dayBox.classList == "n") {
+          dayBox.classList.remove("day_box_weather");
+          dayBox.classList.add("night_box_weather");
+        } else if (dayBox.classList == "d") {
+          dayBox.classList.remove("night_box_weather");
+          dayBox.classList.add("day_box_weather");
+        }
+      })
+    )
+    .then(() => {
+      $(".multiple-items").slick({
+        infinite: true,
+        slidesToShow: 3,
+        slidesToScroll: 3,
       });
-  }
+    });
 });
 
 // действия для скрития блока на 5дней и вывода погоды на сегодня
