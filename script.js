@@ -39,7 +39,7 @@ searchValue.addEventListener("keydown", function (e) {
   if (e.keyCode === 13) {
     timeHourlyNow.innerHTML = ``;
 
-    let api = `http://api.openweathermap.org/data/2.5/forecast?q=${searchValue.value}&lang=ru&appid=34f43a858bf23ccc0aa2963cbf729cda`;
+    let api = `https://api.openweathermap.org/data/2.5/forecast?q=${searchValue.value}&lang=ru&appid=34f43a858bf23ccc0aa2963cbf729cda`;
     fetch(api)
       .then((request) => request.json())
       .then((json) =>
@@ -168,7 +168,7 @@ fiveDays.addEventListener("click", function (e) {
     contentBoxFiveDays.style.display = "block";
   }
   fetch(
-    `http://api.openweathermap.org/data/2.5/forecast?q=${searchValue.value}&lang=ru&appid=34f43a858bf23ccc0aa2963cbf729cda`
+    `https://api.openweathermap.org/data/2.5/forecast?q=${searchValue.value}&lang=ru&appid=34f43a858bf23ccc0aa2963cbf729cda`
   )
     .then((request) => request.json())
     .then((json) => {
@@ -364,7 +364,7 @@ fiveDays.addEventListener("click", function (e) {
 
 // выводит города рядом
 fetch(
-  "http://api.openweathermap.org/data/2.5/weather?id=710791&lang=ru&appid=34f43a858bf23ccc0aa2963cbf729cda"
+  "https://api.openweathermap.org/data/2.5/weather?id=710791&lang=ru&appid=34f43a858bf23ccc0aa2963cbf729cda"
 )
   .then((request) => request.json())
   .then(
@@ -382,7 +382,7 @@ fetch(
             `)
   );
 fetch(
-  "http://api.openweathermap.org/data/2.5/weather?id=702550&lang=ru&appid=34f43a858bf23ccc0aa2963cbf729cda"
+  "https://api.openweathermap.org/data/2.5/weather?id=702550&lang=ru&appid=34f43a858bf23ccc0aa2963cbf729cda"
 )
   .then((request) => request.json())
   .then(
@@ -399,7 +399,7 @@ fetch(
             `)
   );
 fetch(
-  "http://api.openweathermap.org/data/2.5/weather?id=698740&lang=ru&appid=34f43a858bf23ccc0aa2963cbf729cda"
+  "https://api.openweathermap.org/data/2.5/weather?id=698740&lang=ru&appid=34f43a858bf23ccc0aa2963cbf729cda"
 )
   .then((request) => request.json())
   .then(
@@ -415,7 +415,7 @@ fetch(
             `)
   );
 fetch(
-  "http://api.openweathermap.org/data/2.5/weather?id=706483&lang=ru&appid=34f43a858bf23ccc0aa2963cbf729cda"
+  "https://api.openweathermap.org/data/2.5/weather?id=706483&lang=ru&appid=34f43a858bf23ccc0aa2963cbf729cda"
 )
   .then((request) => request.json())
   .then(
